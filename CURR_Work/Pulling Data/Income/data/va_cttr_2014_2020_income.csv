@@ -1,0 +1,113 @@
+"","GEOID","NAME","variable","estimate","moe","year"
+"1","51073","Gloucester County, Virginia","S1901_C01_012",60980,4774,2014
+"2","51093","Isle of Wight County, Virginia","S1901_C01_012",65910,3178,2014
+"3","51199","York County, Virginia","S1901_C01_012",80900,2698,2014
+"4","51095","James City County, Virginia","S1901_C01_012",76705,2556,2014
+"5","51115","Mathews County, Virginia","S1901_C01_012",63157,6196,2014
+"6","51710","Norfolk city, Virginia","S1901_C01_012",44150,1021,2014
+"7","51175","Southampton County, Virginia","S1901_C01_012",49690,4434,2014
+"8","51550","Chesapeake city, Virginia","S1901_C01_012",70176,1583,2014
+"9","51650","Hampton city, Virginia","S1901_C01_012",49879,1767,2014
+"10","51700","Newport News city, Virginia","S1901_C01_012",51000,1081,2014
+"11","51740","Portsmouth city, Virginia","S1901_C01_012",46239,1421,2014
+"12","51810","Virginia Beach city, Virginia","S1901_C01_012",67001,938,2014
+"13","51620","Franklin city, Virginia","S1901_C01_012",33133,4309,2014
+"14","51735","Poquoson city, Virginia","S1901_C01_012",83460,8664,2014
+"15","51800","Suffolk city, Virginia","S1901_C01_012",66822,2281,2014
+"16","51830","Williamsburg city, Virginia","S1901_C01_012",48057,4448,2014
+"17","51073","Gloucester County, Virginia","S1901_C01_012",61121,4014,2015
+"18","51095","James City County, Virginia","S1901_C01_012",75710,2922,2015
+"19","51175","Southampton County, Virginia","S1901_C01_012",48962,4005,2015
+"20","51199","York County, Virginia","S1901_C01_012",81749,3290,2015
+"21","51093","Isle of Wight County, Virginia","S1901_C01_012",65741,3250,2015
+"22","51740","Portsmouth city, Virginia","S1901_C01_012",45676,1325,2015
+"23","51810","Virginia Beach city, Virginia","S1901_C01_012",66634,918,2015
+"24","51830","Williamsburg city, Virginia","S1901_C01_012",48639,4653,2015
+"25","51115","Mathews County, Virginia","S1901_C01_012",63845,5703,2015
+"26","51550","Chesapeake city, Virginia","S1901_C01_012",68620,1695,2015
+"27","51710","Norfolk city, Virginia","S1901_C01_012",44480,1077,2015
+"28","51800","Suffolk city, Virginia","S1901_C01_012",65499,1792,2015
+"29","51735","Poquoson city, Virginia","S1901_C01_012",83735,6283,2015
+"30","51620","Franklin city, Virginia","S1901_C01_012",32399,4457,2015
+"31","51700","Newport News city, Virginia","S1901_C01_012",50077,1054,2015
+"32","51650","Hampton city, Virginia","S1901_C01_012",49190,1493,2015
+"33","51073","Gloucester County, Virginia","S1901_C01_012",62878,3180,2016
+"34","51093","Isle of Wight County, Virginia","S1901_C01_012",66835,3487,2016
+"35","51175","Southampton County, Virginia","S1901_C01_012",51032,3277,2016
+"36","51830","Williamsburg city, Virginia","S1901_C01_012",50091,3162,2016
+"37","51199","York County, Virginia","S1901_C01_012",83410,3325,2016
+"38","51095","James City County, Virginia","S1901_C01_012",80226,2989,2016
+"39","51735","Poquoson city, Virginia","S1901_C01_012",84643,8524,2016
+"40","51740","Portsmouth city, Virginia","S1901_C01_012",47050,1608,2016
+"41","51700","Newport News city, Virginia","S1901_C01_012",50089,1008,2016
+"42","51650","Hampton city, Virginia","S1901_C01_012",49890,1504,2016
+"43","51800","Suffolk city, Virginia","S1901_C01_012",65435,1970,2016
+"44","51550","Chesapeake city, Virginia","S1901_C01_012",69978,1380,2016
+"45","51115","Mathews County, Virginia","S1901_C01_012",64049,7180,2016
+"46","51620","Franklin city, Virginia","S1901_C01_012",38333,4510,2016
+"47","51710","Norfolk city, Virginia","S1901_C01_012",45268,978,2016
+"48","51810","Virginia Beach city, Virginia","S1901_C01_012",67719,1013,2016
+"49","51073","Gloucester County, Virginia","S1901_C01_012",63881,2572,2017
+"50","51175","Southampton County, Virginia","S1901_C01_012",53681,4028,2017
+"51","51199","York County, Virginia","S1901_C01_012",86781,3475,2017
+"52","51093","Isle of Wight County, Virginia","S1901_C01_012",67767,3199,2017
+"53","51740","Portsmouth city, Virginia","S1901_C01_012",48727,1587,2017
+"54","51810","Virginia Beach city, Virginia","S1901_C01_012",70500,1124,2017
+"55","51830","Williamsburg city, Virginia","S1901_C01_012",54606,4779,2017
+"56","51115","Mathews County, Virginia","S1901_C01_012",63622,9637,2017
+"57","51550","Chesapeake city, Virginia","S1901_C01_012",72214,1485,2017
+"58","51620","Franklin city, Virginia","S1901_C01_012",38760,4679,2017
+"59","51650","Hampton city, Virginia","S1901_C01_012",52021,1382,2017
+"60","51710","Norfolk city, Virginia","S1901_C01_012",47137,930,2017
+"61","51700","Newport News city, Virginia","S1901_C01_012",51082,1419,2017
+"62","51800","Suffolk city, Virginia","S1901_C01_012",68089,1784,2017
+"63","51735","Poquoson city, Virginia","S1901_C01_012",88328,8414,2017
+"64","51095","James City County, Virginia","S1901_C01_012",80772,3757,2017
+"65","51073","Gloucester County, Virginia","S1901_C01_012",66701,3711,2018
+"66","51199","York County, Virginia","S1901_C01_012",90367,3142,2018
+"67","51095","James City County, Virginia","S1901_C01_012",83048,2991,2018
+"68","51175","Southampton County, Virginia","S1901_C01_012",54611,6821,2018
+"69","51093","Isle of Wight County, Virginia","S1901_C01_012",71376,3787,2018
+"70","51740","Portsmouth city, Virginia","S1901_C01_012",50224,1622,2018
+"71","51810","Virginia Beach city, Virginia","S1901_C01_012",74186,953,2018
+"72","51830","Williamsburg city, Virginia","S1901_C01_012",56163,6110,2018
+"73","51115","Mathews County, Virginia","S1901_C01_012",67009,9029,2018
+"74","51650","Hampton city, Virginia","S1901_C01_012",54550,1491,2018
+"75","51550","Chesapeake city, Virginia","S1901_C01_012",75790,1575,2018
+"76","51800","Suffolk city, Virginia","S1901_C01_012",70664,2173,2018
+"77","51620","Franklin city, Virginia","S1901_C01_012",40375,6482,2018
+"78","51710","Norfolk city, Virginia","S1901_C01_012",49146,990,2018
+"79","51735","Poquoson city, Virginia","S1901_C01_012",96831,4475,2018
+"80","51700","Newport News city, Virginia","S1901_C01_012",51884,1249,2018
+"81","51073","Gloucester County, Virginia","S1901_C01_012",70537,5663,2019
+"82","51093","Isle of Wight County, Virginia","S1901_C01_012",73991,3862,2019
+"83","51095","James City County, Virginia","S1901_C01_012",87678,3010,2019
+"84","51175","Southampton County, Virginia","S1901_C01_012",61348,6838,2019
+"85","51199","York County, Virginia","S1901_C01_012",92069,3645,2019
+"86","51740","Portsmouth city, Virginia","S1901_C01_012",52175,1675,2019
+"87","51650","Hampton city, Virginia","S1901_C01_012",56287,1252,2019
+"88","51710","Norfolk city, Virginia","S1901_C01_012",51590,1086,2019
+"89","51700","Newport News city, Virginia","S1901_C01_012",53215,1607,2019
+"90","51550","Chesapeake city, Virginia","S1901_C01_012",78640,2645,2019
+"91","51115","Mathews County, Virginia","S1901_C01_012",64237,13799,2019
+"92","51620","Franklin city, Virginia","S1901_C01_012",40417,8465,2019
+"93","51830","Williamsburg city, Virginia","S1901_C01_012",57463,5298,2019
+"94","51800","Suffolk city, Virginia","S1901_C01_012",74884,2756,2019
+"95","51810","Virginia Beach city, Virginia","S1901_C01_012",76610,1188,2019
+"96","51735","Poquoson city, Virginia","S1901_C01_012",97118,4408,2019
+"97","51175","Southampton County, Virginia","S1901_C01_012",63034,5660,2020
+"98","51073","Gloucester County, Virginia","S1901_C01_012",71649,4174,2020
+"99","51115","Mathews County, Virginia","S1901_C01_012",74489,16802,2020
+"100","51095","James City County, Virginia","S1901_C01_012",91675,4509,2020
+"101","51093","Isle of Wight County, Virginia","S1901_C01_012",77870,5219,2020
+"102","51199","York County, Virginia","S1901_C01_012",93356,2997,2020
+"103","51700","Newport News city, Virginia","S1901_C01_012",54511,1746,2020
+"104","51800","Suffolk city, Virginia","S1901_C01_012",79899,3566,2020
+"105","51710","Norfolk city, Virginia","S1901_C01_012",53026,1033,2020
+"106","51740","Portsmouth city, Virginia","S1901_C01_012",53213,1956,2020
+"107","51550","Chesapeake city, Virginia","S1901_C01_012",81261,2200,2020
+"108","51650","Hampton city, Virginia","S1901_C01_012",57041,2127,2020
+"109","51620","Franklin city, Virginia","S1901_C01_012",49811,5437,2020
+"110","51830","Williamsburg city, Virginia","S1901_C01_012",59288,5801,2020
+"111","51735","Poquoson city, Virginia","S1901_C01_012",100696,6185,2020
+"112","51810","Virginia Beach city, Virginia","S1901_C01_012",78136,1419,2020
