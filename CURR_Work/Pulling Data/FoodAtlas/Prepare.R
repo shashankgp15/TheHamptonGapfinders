@@ -1,8 +1,25 @@
 library(tidyverse)
 library(tidycensus)
-foodAccess <- read_xlsx("FoodAccessResearchAtlasData2015.xlsx", sheet = 2)
+library(readxl)
+setwd("CURR_Work/Pulling Data/FoodAtlas/")
 
-vaFoodAccess <- FoodAccess %>% filter(State == "Virginia")
+#<!----------------------------------------------------->
+#<- This block of code is just for the Prepare.R 
+#<- but the rest of the file will be merging it
+#<!----------------------------------------------------->
+
+foodAccess15 <- read_xlsx("Original/FoodAccessResearchAtlasData2015.xlsx", sheet = 3) %>% mutate(year = 2015)
+foodAccess19 <- read_xlsx("Original/FoodAccessResearchAtlasData2019.xlsx", sheet = 3) %>% mutate(year = 2019)
+
+foodAccess15 <- foodAccess15 %>% rename(Pop2010 = POP2010)
+
+masterFoodAccess <- rbind(foodAccess15, foodAccess19)
+
+#<!----------------------------------------------------->
+#<!----------------------------------------------------->
+
+
+foodAccess_Va <- masterFoodAccess %>% filter(State == "Virginia")
 counties <- c("Chesapeake City", "Franklin City", "Hampton City", 
               "Newport News City", "Norfolk City", "Poquoson City",
               "Portsmouth City", "Suffolk City", "Virginia Beach City",
@@ -14,17 +31,13 @@ counties <- c("Chesapeake City", "Franklin City", "Hampton City",
               "Williamsburg", "Gloucester", "Isle of Wight",
               "James", "Mathews", "Southampton", "York")
 
-vaCoFoodAccess <- vaFoodAccess %>% filter(County %in% counties)
+foodAccess_VaTr <- foodAccess_Va %>% filter(County %in% counties)
 
 #<!----------------------------------------------------------------->
 #<!----------------- Getting Hyesoo's Variables--------------------->
 #<!----------------------------------------------------------------->
 
-# setwd("TheHamptonGapfinders/CURR_Work/Pulling Data/FoodAtlas")
-
-my.df <- read.csv("countyAtlasData.csv")
-
-string <- "CensusTract
+desiredColumns <- "CensusTract
 State
 County
 Urban
@@ -98,17 +111,11 @@ TractSeniors
 TractBlack
 TractHUNV"
 
-string.split <- unlist(strsplit(string, "\n"))
+desiredColumns <- unlist(strsplit(desiredColumns, "\n")) 
+# strsplit searching for new line character int he string above
 
-new.df <- my.df %>% select(string.split)
-
-write.csv(x = new.df, "FIN_Atlas_CountyData.csv")
+vatr_foodAccess_FIN <- foodAccess_VaTr %>% select(desiredColumns, -"")
 
 
-county_fips <- c(550, 620, 650, 700, 710, 735, 740, 800, 810,
-                 830, 073, 093, 095, 115, 175, 199)
-temp <- get_acs(county = county_fips, state = "VA", 
-                geography = "tract",
-                variables = "S1901_C01_012", 
-                year = 2015, geometry = TRUE,)
-
+# write.csv(x = vatr_foodAccess_FIN, "Working/vatr_foodAccess.csv")
+# Commented out because not needed after first is saved
