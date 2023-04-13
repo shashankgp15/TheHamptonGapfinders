@@ -123,7 +123,7 @@ desiredColumns <- unlist(strsplit(desiredColumns, "\n"))
 vatr_foodAccess_FIN <- foodAccess_VaTr %>% select(desiredColumns)
 
 
-# write.csv(x = vatr_foodAccess_FIN, "Working/vatr_foodAccess.csv", row.names = FALSE)
+#write.csv(x = vatr_foodAccess_FIN, "Working/vatr_foodAccess.csv", row.names = FALSE)
 # Commented out because not needed after first is saved
 
 
@@ -139,11 +139,11 @@ library(sf)
 library(sp)
 
 
-foodAccess <- read.csv("Working/vatr_foodAccess.csv")
+foodAccess <- read.csv("Working/vatr_foodAccess.csv", )
 
 hamptonGeoid <- unique(substr(foodAccess$CensusTract, 1, 5))
 
-countyOutlines <- county_laea %>% filter(GEOID %in% hamptonGeoid)
+countyOutlines <- county_laea %>% filter(GEOID %in% hamptonGeoid) %>% st_transform(crs = st_crs("EPSG:4326"))
 
 acsGeoBase <- get_acs(geography = "tract", variables = "B19013_001",
                 state = "VA", geometry = TRUE, year = 2019)
@@ -166,6 +166,8 @@ for(i in 1:nrow(foodAccess)){
   foodAccess.sf <- rbind(foodAccess.sf, st_as_sf(merge(foodAccess[i,], geometry[i,])))
 }
 
+write_sf(foodAccess.sf, "Distribution/masterData.shp", )
+wwrite_sf(st_as_sf(countyOutlines), "Distribution/countyOutlines.shp")
 
 #<!---------------------------------------------------------------->
 #<!-                      Example case                        ----->
