@@ -27,34 +27,45 @@ data19 <- data %>% filter(year == 2019)
 #!<------------------------------------------------>
 
 pal1 <- colorNumeric(palette = "magma", 
-                    domain = as.double(data15$lblck1s), reverse = TRUE)
+                    domain = as.double(data19$lsnphlfs), reverse = TRUE)
 
-map1 <- leaflet(data15) %>% 
+map1 <- leaflet(data19) %>% 
   addProviderTiles("CartoDB.Positron") %>% 
-  addPolygons(color = ~pal1(as.double(lblck1s)), weight = 1, smoothFactor = 0.5,
+  addPolygons(color = ~pal1(as.double(lsnphlfs)), weight = 1, smoothFactor = 0.5,
               opacity = 1.0, fillOpacity = 0.9,
               highlightOptions = highlightOptions(color = "black", weight = 2,
                                                   bringToFront = TRUE, sendToBack = TRUE),
-              label = round(as.double(data15$lblck1s), 2)) %>%
-  addPolylines(data = countyOutlines, color = "black", weight = 1.2, smoothFactor = .5,
+              label = round(as.double(data19$lsnphlfs), 2)) %>%
+  addPolylines(data = countyOutline, color = "black", weight = 1.2, smoothFactor = .5,
               fillOpacity = 0, fillColor = "transparent") %>%
-  addLegend(position = "topright", pal = pal1, values = as.double(data15$lblck1s), opacity = .9, title = "Population")
+  addLegend(position = "topright", pal = pal1, values = as.double(data19$lsnphlfs), opacity = .9, title = "Population")
   
 map1
 
 
+x <- as.double(data19$lblck1s)
+y <- as.double(data19$TrctBlc)
+
+plot(x, y)
 
 
 
 
+pal1 <- colorNumeric(palette = "magma", 
+                     domain = as.double(data19$lblckhlfs), reverse = TRUE)
 
+map1 <- leaflet(data19) %>% 
+  addProviderTiles("CartoDB.Positron") %>% 
+  addPolygons(color = ~pal1(as.double(lblckhlfs)), weight = 1, smoothFactor = 0.5,
+              opacity = 1.0, fillOpacity = 0.9,
+              highlightOptions = highlightOptions(color = "black", weight = 2,
+                                                  bringToFront = TRUE, sendToBack = TRUE),
+              label = round(as.double(data19$lblckhlfs), 2)) %>%
+  addPolylines(data = countyOutline, color = "black", weight = 1.2, smoothFactor = .5,
+               fillOpacity = 0, fillColor = "transparent") %>%
+  addLegend(position = "topright", pal = pal1, values = as.double(data19$lblckhlfs), opacity = .9, title = "Population")
 
-
-
-
-
-
-
+map1
 
 
 

@@ -87,6 +87,8 @@ lalowi1
 lalowi1share
 laseniors1
 laseniors1share
+lawhite1
+lawhite1share
 lablack1
 lablack1share
 lahunv1
@@ -116,14 +118,15 @@ lasnap20share
 TractLOWI
 TractSeniors
 TractBlack
-TractHUNV"
+TractHUNV
+TractSNAP"
 
 desiredColumns <- unlist(strsplit(desiredColumns, "\n")) 
 
 vatr_foodAccess_FIN <- foodAccess_VaTr %>% select(desiredColumns)
 
 
-#write.csv(x = vatr_foodAccess_FIN, "Working/vatr_foodAccess.csv", row.names = FALSE)
+write.csv(x = vatr_foodAccess_FIN, "Working/vatr_foodAccess.csv", row.names = FALSE)
 # Commented out because not needed after first is saved
 
 
@@ -167,7 +170,7 @@ for(i in 1:nrow(foodAccess)){
 }
 
 write_sf(foodAccess.sf, "Distribution/masterData.shp", )
-wwrite_sf(st_as_sf(countyOutlines), "Distribution/countyOutlines.shp")
+write_sf(st_as_sf(countyOutlines), "Distribution/countyOutlines.shp")
 
 #<!---------------------------------------------------------------->
 #<!-                      Example case                        ----->
@@ -179,4 +182,11 @@ example$lapophalf <- as.double(example$lapophalf)
 plot(example)
 
 
+#<!---------------------------------------------------------------->
+#<!-                      Zip Code Playground                 ----->
+#<!---------------------------------------------------------------->
 
+zipCodeOutlines <- read_sf("Original/zipCodeOutlines.shp")
+View(zipCodeOutlines)
+zipCodeOutlines[,"PERIMETER"] <- zipCodeOutlines$PERIMETER**3
+plot(zipCodeOutlines[,"PERIMETER"])
