@@ -5,9 +5,9 @@ account: blackbrand
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5360917
-bundleId: 5963336
+bundleId: 6632463
 url: https://blackbrand.shinyapps.io/shinyapp/
-when: 1653996035.19966
-lastSyncTime: 1653996035.19967
+when: 1670949651.60879
+lastSyncTime: 1670949651.60881
 asMultiple: FALSE
 asStatic: FALSE

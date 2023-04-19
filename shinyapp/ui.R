@@ -47,6 +47,7 @@ library(forcats)
 library(plotly)
 library(formattable)
 library(hrbrthemes)
+#library(devtools)
 
 
 prettyblue <- "#232D4B"
@@ -104,10 +105,7 @@ ui <- navbarPage(
         # br("", style = "padding-top:2px;"),
         # img(src = "VTDSPG Logo.png", class = "topimage", width = "20%", style = "display: block; margin-left: auto; margin-right: auto;"),
         br(""),
-        h1(
-          strong(
-            "Tracking Indicators of the Economic and Social Mobility of the Black Community in Hampton Roads"
-          ),
+        h1(strong("Tracking Indicators of the Economic and Social Mobility of the Black Community in Hampton Roads"),
           br(""),
           h4("Virginia Tech: Data Science for the Public Good Program & CMDA Capstone Team"),
           h4("See 'Meet the Team' tab for detailed team contributions"),
@@ -123,7 +121,6 @@ ui <- navbarPage(
             a(href = "https://en.wikipedia.org/wiki/Hampton_Roads", "Hampton Roads", target = "_blank"),
             "area consists of ten cities and six counties in the Southeastern region of Virginia. It is ranked as the 33rd largest MSA in the United States, the 8th largest metro area in the Southeast region, and the 2nd largest between Atlanta and Washington, DC."
           ),
-          
           p(
             "The jurisdictions of Hampton Roads are the cities of Chesapeake, Franklin, Hampton, Newport News, Norfolk, Poquoson, Portsmouth, Suffolk, Virginia Beach, and Williamsburg, and the counties of Gloucester, Isle of Wright, James City, Mathews, Southampton, and York."
           ),
@@ -193,7 +190,8 @@ ui <- navbarPage(
       fluidRow(align = "center",
                p(tags$small(
                  em('Last updated: May 2022')
-               )))
+               ))
+      )
     ),
     
     tabPanel("Hampton Roads Localities",
@@ -227,8 +225,11 @@ ui <- navbarPage(
                       ),
                       withSpinner((
                         plotOutput("hampton_counties_map", width = "100%", height = "600px")
-                      ))),
-             )),
+                      ))
+               ),
+             )
+    ),
+    
     tabPanel(
       "Sociodemographics",
       fluidRow(
@@ -397,13 +398,17 @@ ui <- navbarPage(
                                                        "600px")),
                               p(tags$small(
                                 "Data Source: ACS 5 Year Estimate Table B01001"
-                              ))
+                                )
+                              )
                             )
                             
-                          ))
-               ))
-      )
+                          )
+                    )
+               )
+            )
+        )
     ),
+    
     tabPanel(
       "Data and Methodology",
       fluidRow(
@@ -537,6 +542,14 @@ ui <- navbarPage(
             The number of providers per zip code indicates how accessible internet is in that area compared to others. 
             On the other hand, it only speaks to potential coverage based on what is available and doesn't describe how many people actually have internet access.
             The internet quality is based on how many providers in the area offer plans with download speeds great enough for the average Black family in Hampton Roads."
+          ),
+          p(
+            # selectizeInput("files", "Select a File", choices = c("Positive Bag", "Negative Bag", "Diversity Bag", "Black Diversity Bag"), selected = "Positive Bag", multiple = FALSE),
+            # downloadButton('downloadData', 'Download')
+            "Due to lack of quantitative data that exists, we analyzed qualitative data by applying text analytics and natural language processing to evaluate the diversity of Hampton Roads 
+            news sources and the intersection between positive and negative connotations of the articles. For the viewer’s evaluation and transparency, the text word banks of positive, negative, 
+            diversity, Black diversity are available to download below.",
+            uiOutput("tab")
           ),
           p(
             strong("People & Values:"),
@@ -1544,9 +1557,9 @@ ui <- navbarPage(
                         withSpinner(plotOutput("anch_plots")),
                         p(tags$small(
                           "Data Source: Manually Collected"
-                        ))
-                      ))
-             )),
+                        )))
+                  ))
+    ),
     tabPanel("Radio Stations",
              fluidRow(
                p("", style = "padding-top:20px;"),
@@ -1566,6 +1579,134 @@ ui <- navbarPage(
                           "Data Source: Collected from new station" # 
                         )))
                ))
+    ),
+    tabPanel("Headquarter Locations", #This tab should have the headquarters analysis and graph
+             fluidRow(
+               p("", style = "padding-top:20px;"),
+               column(
+                 4,
+                 h4(strong("Headquarter Locations ")),
+                 p("", style = "padding-top:10px;"),
+                 p(
+                   "To make up for the lack of quantitative data that exists for the media, entertainment, arts, and technology pillar, we seeked our news articles to 
+                   apply text analytics and Natural Language Processing to quantify our data. Black BRAND’s 150 Year Plan recalls that under this pillar, there is a 
+                   significant gap in the ownership, representation, and narrative/story/portrayal of media. By finding representation in media that revolves around 
+                   entertainment, arts, and technology, we can bridge the gap using our collection of news articles across the region to portray a story using the 
+                   positive or negative sentiment in these texts."
+                 ),
+                p("", style = "padding-top:10px;"),
+                p(
+                  "The Hampton Roads Region has major news channels with online articles along with several more regional online newspapers. The larger news channels 
+                  based out of Norfolk do cover a lot more articles related to our pillar of entertainment, media, arts, and technology with more manpower, whereas some 
+                  publications talked about more lifestyle content. It should be noted that some of the newspapers did cover numerous regions with its headquarters in 
+                  one place and smaller regions of Hampton Roads shared publications, with its headquarters in the bigger city. For example, Smithfield Times based in 
+                  Smithfield covered the Isle of Wight and Surry Counties. Tidewater News covers the areas of Franklin, Southampton County, and Isle of Wight County but 
+                  has its headquarters based in Franklin. The Gazette Journal based in Gloucester also covers Mathews. To cover articles than span across multiple 
+                  regions of Hampton Roads, we did have to go past a paywall to obtain more diverse data. Any articles with its headquarters outside of the Hampton Roads 
+                  area were from Virginia news websites that happened to write about the region still. While we tried to find an equal amount of sources per region, it 
+                  was still difficult when some publications lacked in articles about entertainment, media, technology, or arts."
+                ),
+               ),
+               column(8, # put in headquarters graph here
+                      fluidPage(
+                        h1(strong("Headquarters"), align = "center"),
+                        withSpinner(plotOutput("headquarters_graph")),
+                        p(tags$small(
+                          "Data Source: Newspaper Headquarter Locations" # 
+                        )))
+               ))
+    ),
+    tabPanel("Ratio of Sentiment Over Time", #Analysis of ratio graphs on left
+             fluidRow(
+               p("", style = "padding-top:20px;"),
+               column(
+                 4,
+                 h4(strong("Ratio of Sentiment By Year")),
+                 p("", style = "padding-top:10px;"),
+                 p(
+                   "With the large sum of articles revolving around the media pillar representing the Hampton Roads region, we finally had enough text to be parsed by 
+                   our algorithm to fall under the word bank categories of positive, negative, and diversity. Our algorithm not only can parse single words from the 
+                   articles’ texts, but also phrases that fall under our diversity word bank. This interactive visualization aims to see how the sentiment of positive 
+                   and negative and its ratio changes over the years as our data has articles from as early as 2010. It is important to notice this progress over the 
+                   years to see if the work that has been done for the region is effective or if a narrative was being created that conveyed there are still some work 
+                   to be done. While there was a large spike of diversity in one year that dropped, it still stayed relatively stagnant. The negative sentiment in the 
+                   articles decreased over the years while positive sentiment increases even as diversity remains. It appears that with the existing articles revolving 
+                   around this pillars shows that media of the region is relatively positive. "
+                 ),
+                 h4(strong("Limitations")),
+                 p("", style = "padding-top:10px;"),
+                 p(
+                   "Note to viewers and anyone who references this information, we have web scraped the diversity, positive, and negative word banks from online. We 
+                   attempted as much as we could to well as containing our word bank to focus on racial and ethnic diversity. While diversity is intersectional, we 
+                   believe that focusing on racial and ethnic diversity aligns best with Black BRAND’s 150 Year Plan. To prevent misleading the audience and keep things 
+                   as transparent as possible, we have added our word banks under the “Data and Methodology” tab under “Overview.” In addition, these article prevent 
+                   biases are exclusively about media, entertainment, arts, and technology. It is possible that we could have recorded sentiment of overall media in the 
+                   region but would have been difficult with the given timeframe. "
+                 )
+               ),
+               column(8, # drop down menu that gives different ratio bar graphs here
+                      h1(strong("Sentiment Terminology Over Time"), align = "center"),
+                      selectInput(
+                        "select_sent_year",
+                        "Select Year:",
+                        width = "100%",
+                        choices = c(
+                          "2022",
+                          "2021",
+                          "2020",
+                          "2019",
+                          "2018",
+                          "2017",
+                          "2016",
+                          "2015",
+                          "2014",
+                          "2012",
+                          "2010"
+                        )),
+                      mainPanel(plotlyOutput("sentiment_by_year")),
+                      p(
+                        tags$small(
+                          "Derived from Bag of Words Text Analytics Algorithm"
+                        )
+                      )
+               ))
+    ),
+    tabPanel("Diversity vs. Positive & Negative",#analysis of div ratio verses pos&neg ratios
+             fluidRow(
+               p("", style = "padding-top:20px;"),
+               column(
+                 4,
+                 h4(strong("Ratio of Diversity Bag to Positive & Negative Bags")),
+                 p("", style = "padding-top:10px;"),
+                 p(
+                   "The ratios do tell us one part of the story, but to align with the 150 Year Plan we wanted to see if there was an intersection that can tell us a 
+                   different story. We can see that most of the articles, regardless of sentiment, fall within the 0.1% diversity ratio. There is also almost an equal 
+                   number of positive and negative sentiment articles that have a higher diversity ratio, and this is where we can find some significant information. 
+                   While the number of articles are similar, if we the sentiment ratio for each article, we can understand the level of sentiment and how it compares 
+                   to the diversity ratio. Overall, the positive sentiment is stronger in positive articles than the negative sentiment in negative articles for the 
+                   same diversity ratio. And while we have three data points above the 0.2% diversity ratio (two of which have strong negative sentiment), it would be 
+                   imprecise to say that there is more negative sentiment associated with diverse articles. What we can say is that articles from the Hamptons Roads 
+                   region have higher positive sentiment than negative sentiment for the same diversity ratios."
+                 ),
+                 h4(strong("Limitations")),
+                 p("", style = "padding-top:10px;"),
+                 p(
+                   "Note to viewers and anyone who references this information, we have web scraped the diversity, positive, and negative word banks from online. We 
+                   attempted as much as we could to well as containing our word bank to focus on racial and ethnic diversity. While diversity is intersectional, we 
+                   believe that focusing on racial and ethnic diversity aligns best with Black BRAND’s 150 Year Plan. To prevent misleading the audience and keep things 
+                   as transparent as possible, we have added our word banks under the “Data and Methodology” tab under “Overview.” In addition, these article prevent 
+                   biases are exclusively about media, entertainment, arts, and technology. It is possible that we could have recorded sentiment of overall media in the 
+                   region but would have been difficult with the given timeframe. "
+                 )
+               ),
+               column(8, # graphic of div ratio versus pos&neg ratio
+                      fluidPage(
+                        h1(strong("Diversity Bag"), align = "center"),
+                        withSpinner(plotOutput("div_by_pos_and_neg")),
+                        p(tags$small(
+                          "Derived from Bag of Words Text Analytics Algorithm" # 
+                        )))
+               ))
     )),
   
   #People and Values--------------------------------------------------
@@ -1581,14 +1722,13 @@ ui <- navbarPage(
                  p(
                    "We retrived several indicators using the 2019 5-year ACS estimates to examine the family dynamics of Black households in Hampton Roads. These characteristics
                                                are presented using interactive maps. Clicking on the tabs and selecting a variable populates the map. Hovering over the map displays the percentage of Black residents living
-                                                in a specific city/county with the selected characteristics. "
-                 ),
+                                                in a specific city/county with the selected characteristics. "),
                  p("", style = "padding-top:20px;"),
                  tags$ul(
                    tags$li(("The interactive map shows:")),
                    p("", style = "padding-top:20px;"),
                    withSpinner(textOutput("description_famtext"))
-                 )
+                   )
                ),
                column(8,
                       fluidPage(
@@ -1600,8 +1740,7 @@ ui <- navbarPage(
                           choices = c(
                             "Percent of Black Children under 18 in Female Head of Household",
                             "Percent of Married Black Population 15 years and over",
-                            "Percent of Black Grandparents who are Guardians"
-                          )
+                            "Percent of Black Grandparents who are Guardians")
                         ),
                         withSpinner(leafletOutput("family_maps")),
                         p(
@@ -1641,6 +1780,7 @@ ui <- navbarPage(
                           )
                         )))
              )),
+    
     tabPanel("Financial Literacy",
              fluidRow(
                p("", style = "padding-top:20px;"),
@@ -1659,8 +1799,8 @@ ui <- navbarPage(
                  h4(strong("Knowledge Gap")),
                  p("", style = "padding-top:10px;"),
                  p(
-                   "In the last plot we are looking at how many respondents answered “I don’t know” to any of the financial literacy assessment questions. Black respondents did best in this area, most of them did not respond “I don’t know” throughout the survey.
-"
+                   "In the last plot we are looking at how many respondents answered “I don’t know” to any of the financial literacy assessment questions. 
+                   Black respondents did best in this area, most of them did not respond “I don’t know” throughout the survey."
                  )
                ),
                column(8,
@@ -1713,7 +1853,9 @@ ui <- navbarPage(
                         )
                         
                         )))
-             )),
+             )
+        ),
+        
   
   tabPanel("Future Work",
            fluidRow(
@@ -1738,6 +1880,11 @@ ui <- navbarPage(
                p(
                  "For this project, we have provided a dashboard that shows a combined view of multiple indicators in two major areas: Education and Economics that collectively addresses the challenges facing the Black communities in the Hampton Region. However, given the substantial variations across localities, a future project would be to consider using the indicators provided to develop an economic and social vulnerability
                                      index specific for the Black community in the Hampton region. This future project could also include the other three pillars: Media, Art, and Entertainment, People and Values, and Politics and Justice to provide a robust and comprehensive index and dashboard for Black BRAND."
+               ),
+               p(
+                 "While the results of the text analysis conducted on local Hampton area newspaper articles and media showed a positive sentiment for the Media/Entertainemnt pillar, it can be expected as new art exhibits and most media exposure garner positive interest, but we hope to expand this type of qualititative analysis to other pillars, like Policy/Justice as this pillar may produce more interesting results. Current news 
+                 is not majorly positive in all context, so it would be interesting to see the narrative that is further expemplified by this type of analysis and even how it has changed over time, especially with the start of BlackBRAND's 150 Year Plan. Other notable addiitons that could strengthen the dashboard and relative analysis would be to transition the web-scraping method of online media into a more automatic and reliable
+                 manner so that our data does not become obsolete. Lastly, we hope to create a flagging system for words that may have a double meaning, so we remain transparent to BlackBRAND and other users on the context of the analysis that is conducted."
                )
                
              ),
@@ -1918,7 +2065,7 @@ ui <- navbarPage(
                  p(
                    "The",
                    a(
-                     href = 'https://www.ais.science.vt.edu/academics/cmda.html',
+                     href = 'https://data.science.vt.edu/programs/cmda.html',
                      'Computational Modeling and Data Analytics (CMDA) program',
                      target = "_blank"
                    ),
@@ -2026,7 +2173,7 @@ ui <- navbarPage(
                  p(
                    "The",
                    a(
-                     href = 'https://www.ais.science.vt.edu/academics/cmda.html',
+                     href = 'https://data.science.vt.edu/programs/cmda.html',
                      'Computational Modeling and Data Analytics (CMDA) program',
                      target = "_blank"
                    ),
@@ -2079,6 +2226,110 @@ ui <- navbarPage(
           )
         ))),
     tabPanel(
+      "CMDA Capstone Fall 22",
+      value = "team",
+      fluidRow(column(3),
+               column(
+                 6,
+                 h4(
+                   strong(
+                     "Computational Modeling & Data Analytics Capstone Team (Fall 2022)"
+                   ) ,
+                   align = "center"
+                 ),
+                 p(
+                   "The",
+                   a(
+                     href = 'https://data.science.vt.edu/programs/cmda.html',
+                     'Computational Modeling and Data Analytics (CMDA) program',
+                     target = "_blank"
+                   ),
+                   "draws on expertise from three primary departments at Virginia Tech with strengths in quantitative science: ",
+                   a(href = 'https://math.vt.edu/', ' Mathematics'),
+                   ', ',
+                   a(href = 'https://www.stat.vt.edu/', 'Statistics'),
+                   ', ',
+                   a(href = 'https://cs.vt.edu/', ' Computer Science'),
+                   '.',
+                   "By combining elements of these disciplines in innovative, integrated courses that emphasize techniques at the forefront of applied computation, we teach a rich suite of quantitative skills for tackling today's massive data-based problems."
+                 ),
+                 p("", style = "padding-top:10px;"),
+               )),
+      fluidRow(
+        column(3),
+        column(
+          2,
+          align = "center",
+          h4(strong("")),
+          tags$br(),
+          tags$br(),
+          img(
+            src = "Esha.jpg",
+            style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;",
+            width = "85%",
+            height = "85%"
+          ),
+          tags$br(),
+          p(
+            a(href = 'http://www.linkedin.com/in/esha-islam/', 'Esha Islam', target = '_blank'),
+            "(Virginia Tech, CMDA)"
+          )
+        ),
+        column(
+          2,
+          align = "center",
+          h4(strong("")),
+          tags$br(),
+          tags$br(),
+          img(
+            src = "crystal.jpg",
+            style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;",
+            width = "85%",
+            height = "85%"
+          ),
+          tags$br(),
+          p(
+            a(href = 'https://www.linkedin.com/in/crystalsulee/', 'Crystal Lee', target = '_blank'),
+            "(Virginia Tech, CMDA)"
+          )
+        ),
+        column(
+          2,
+          align = "center",
+          h4(strong("")),
+          tags$br(),
+          tags$br(),
+          img(
+            src = "sania.jpg",
+            style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;",
+            width = "85%",
+            height = "85%"
+          ),
+          tags$br(),
+          p(
+            a(href = 'http://www.linkedin.com/in/saniamahmood-2022/', 'Sania Mahmood', target = '_blank'),
+            "(Virginia Tech, CMDA)"
+          )
+        ),
+        column(
+          2,
+          align = "center",
+          h4(strong("")),
+          tags$br(),
+          tags$br(),
+          img(
+            src = "abigail.jpg",
+            style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;",
+            width = "85%",
+            height = "85%"
+          ),
+          tags$br(),
+          p(
+            a(href = 'https://www.linkedin.com/in/abigail-simpkins-170b1b14a/', 'Abigail Simpkins', target = '_blank'),
+            "(Virginia Tech, CMDA)"
+          )
+        ))),
+    tabPanel(
       "Team Contributions",
       value = "team",
       fluidRow(column(3),
@@ -2091,8 +2342,13 @@ ui <- navbarPage(
                    align = "center"
                  ),
                  p("", style = "padding-top:10px;"),
-                 p("This dashboard was originally created by the Virginia Tech (VT) DSPG team in the summer of 2021.  The CMDA Capstone Fall 21 team continued their work and added to the pre-existing material.  The Fall 21 team's contribution includes the work done for the policy/justice (traffic stops, city council demographics & incarceration trends), media/entertainment (news anchors & radio stations), and people/values pillars (religion). 
-                   The Spring 2022 Capstone team added onto the pillars of media and entertainment, policy and justice, & people and values. Emily investigated internet covergae & quality under media and entertainment, Zhenming covered gentrification under policy and justice, and Allison analyzed financial literacy under people and values.  All of the remaining accrediation for work completed remains with the VT DSPG team and program.")
+                 p("This dashboard was originally created by the Virginia Tech (VT) DSPG team in the summer of 2021.  The CMDA Capstone Fall 21 team continued their work and added to the 
+                   pre-existing material.  The Fall 21 team's contribution includes the work done for the policy/justice (traffic stops, city council demographics & incarceration trends), 
+                   media/entertainment (news anchors & radio stations), and people/values pillars (religion). The Spring 2022 Capstone team added onto the pillars of media and entertainment, 
+                   policy and justice, & people and values. Emily investigated internet covergae & quality under media and entertainment, Zhenming covered gentrification under policy and justice, 
+                   and Allison analyzed financial literacy under people and values.  All of the remaining accrediation for work completed remains with the VT DSPG team and program. The Fall 2022
+                   Capstone team expanded the Media/Entertainment pillar with analysis of qualitative data. The Fall 22 team's contributions include text analysis of local newspaper articles and 
+                   media through Natural Language Processing to understand the sentiment of Black communities in Hampton Roads media.")
                ))
     )
   ),

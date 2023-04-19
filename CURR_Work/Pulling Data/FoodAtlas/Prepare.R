@@ -190,3 +190,106 @@ zipCodeOutlines <- read_sf("Original/zipCodeOutlines.shp")
 View(zipCodeOutlines)
 zipCodeOutlines[,"PERIMETER"] <- zipCodeOutlines$PERIMETER**3
 plot(zipCodeOutlines[,"PERIMETER"])
+
+
+
+library(leaflet)
+my_map <- leaflet() %>%
+  addProviderTiles("CartoDB.Positron")
+my_map
+
+
+my_map <- my_map %>%
+  addMarkers(lat=36.7682, lng=-76.2875, 
+             popup="Chesapeak VA")
+
+my_map <- my_map %>%
+  addMarkers(lat=36.6777, lng=-76.9225, 
+             popup="Franklin VA")
+
+
+my_map <- my_map %>%
+  addMarkers(lat=37.0299, lng=-76.3452, 
+             popup="Hampton VA")
+
+my_map <- my_map %>%
+  addMarkers(lat=37.0871, lng=- 76.4730, 
+             popup="Newport News  VA")
+
+
+
+my_map <- my_map %>%
+  addMarkers(lat=36.8508, lng=-76.2859, 
+             popup="Norfolk  VA")
+
+
+my_map <- my_map %>%
+ addMarkers(lat=37.1224, lng= -76.4258,
+            popup="Poquoson VA")
+
+
+my_map <- my_map %>%
+  addMarkers(lat=36.8754, lng=-76.3683, 
+             popup="Portsmouth VA")
+
+
+
+my_map <- my_map %>%
+  addMarkers(lat=36.7282, lng=-76.5836, 
+             popup=" Suffolk VA")
+
+
+
+my_map <- my_map %>%
+  addMarkers(lat=36.8516, lng=-76.1032, 
+             popup=" Virginia Beach VA")
+
+
+my_map <- my_map %>%
+  addMarkers(lat=37.2707, lng=-76.7075, 
+             popup="Williamsburg VA")
+
+
+my_map <- my_map %>%
+  addMarkers(lat=37.4128, lng=-76.5026, 
+             popup="Gloucester County VA")
+
+
+my_map <- my_map %>%
+  addMarkers(lat=36.9289, lng=-76.6875, 
+             popup=" Isle of Wight County VA")
+
+
+my_map <- my_map %>%
+  addMarkers(lat=37.3100, lng=-76.7700, 
+             popup="James City County  VA")
+
+
+my_map <- my_map %>%
+  addMarkers(lat=37.3912, lng= -76.3174, 
+             popup="Mathews County  VA")
+
+
+my_map <- my_map %>%
+  addMarkers(lat=36.6789, lng= -77.1025, 
+             popup=" Southampton County VA")
+
+
+my_map <- my_map %>%
+  addMarkers(lat=37.1304, lng=-76.3869, 
+             popup="York County  VA")
+
+countyOutline <- read_sf("Distribution/countyOutlines.shp")
+my_map <- my_map %>% 
+  addPolylines(data = countyOutline, color = "black", weight = 1.2, smoothFactor = .5,
+             fillOpacity = 0, fillColor = "transparent")
+
+
+
+my_map
+
+
+
+
+
+
