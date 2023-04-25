@@ -12,6 +12,7 @@ data <- read_sf(dsn = "Distribution/masterData.shp")
 countyOutline <- read_sf(dsn = "Distribution/countyOutlines.shp")
 data15 <- data %>% filter(year == 2015)
 data19 <- data %>% filter(year == 2019)
+foodBanks <- read_csv("../GoogleMapsPlaces/FoodBanks.csv")
 
 
 #!<------------------------------------------------>
@@ -25,6 +26,25 @@ data19 <- data %>% filter(year == 2019)
 #!<------------------------------------------------>
 #!<-------------- Playground ---------------------->
 #!<------------------------------------------------>
+
+
+map <- leaflet(data=foodBanks) %>% addTiles() %>%
+  addMarkers(~lng, ~lat, popup=~name) %>%
+  addPolylines(data = countyOutline, color = "black", weight = 1.2, smoothFactor = .5,
+               fillOpacity = 0, fillColor = "transparent")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 pal1 <- colorNumeric(palette = "magma", 
                     domain = as.double(data19$lsnphlfs), reverse = TRUE)
