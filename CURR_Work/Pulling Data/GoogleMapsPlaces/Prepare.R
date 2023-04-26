@@ -4,7 +4,7 @@ library(googleway)
 library(tidyverse)
 library(leaflet)
 
-key <- "AIzaSyBfcu88gynp049lJy6HRQ335-sRc_KsofI"
+key <- "" # Will send you key if need be
 
 set_key(key)
 
