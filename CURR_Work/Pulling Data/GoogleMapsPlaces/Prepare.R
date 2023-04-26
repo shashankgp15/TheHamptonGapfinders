@@ -18,28 +18,51 @@ coords2 <- c(36.754660,-77.062644)
 coords3 <- c(36.807456,-76.126059)
 radius <- 50000
 
-results1 <- google_places(key = key, search_string = 'Food Bank', location=coords1, radius=radius)$results
-results2 <- google_places(key = key, search_string = 'Food Bank', location=coords2, radius=radius)$results
-results3 <- google_places(key = key, search_string = 'Food Bank', location=coords3, radius=radius)$results
 
-r1lat <- results1$geometry$location$lat
-r1lng <- results1$geometry$location$lng
+results1_page1 <- google_places(key = key, search_string = 'Food Bank, Food Pantry, Food Assistance', location=coords1, radius=radius)
+results1_page2 <- google_places(key = key, search_string = 'Food Bank, Food Pantry, Food Assistance', location=coords1, radius=radius, page_token = results1_page1$next_page_token)
+results1_page3 <- google_places(key = key, search_string = 'Food Bank, Food Pantry, Food Assistance', location=coords1, radius=radius, page_token = results1_page2$next_page_token)
 
-r2lat <- results2$geometry$location$lat
-r2lng <- results2$geometry$location$lng
+results2_page1 <- google_places(key = key, search_string = 'Food Bank, Food Pantry, Food Assistance', location=coords2, radius=radius)
+results2_page2 <- google_places(key = key, search_string = 'Food Bank, Food Pantry, Food Assistance', location=coords2, radius=radius, page_token = results2_page1$next_page_token)
+results2_page3 <- google_places(key = key, search_string = 'Food Bank, Food Pantry, Food Assistance', location=coords2, radius=radius, page_token = results2_page2$next_page_token)
 
-r3lat <- results3$geometry$location$lat
-r3lng <- results3$geometry$location$lng
+results3_page1 <- google_places(key = key, search_string = 'Food Bank, Food Pantry, Food Assistance', location=coords3, radius=radius)
+results3_page2 <- google_places(key = key, search_string = 'Food Bank, Food Pantry, Food Assistance', location=coords3, radius=radius, page_token = results3_page1$next_page_token)
+results3_page3 <- google_places(key = key, search_string = 'Food Bank, Food Pantry, Food Assistance', location=coords3, radius=radius, page_token = results3_page2$next_page_token)
 
-r1 <- results1 %>% select(name, place_id, rating, formatted_address)
-r1 <- r1 %>% mutate(lat = r1lat, lng = r1lng)
 
-r2 <- results2 %>% select(name, place_id, rating, formatted_address)
-r2 <- r2 %>% mutate(lat = r2lat, lng = r2lng)
+result_ids <- c(results1_page1$results$place_id, 
+                         results1_page2$results$place_id, 
+                         results1_page3$results$place_id,
+                         results2_page1$results$place_id,
+                         results2_page2$results$place_id,
+                         results2_page3$results$place_id,
+                         results3_page1$results$place_id,
+                         results3_page2$results$place_id,
+                         results3_page3$results$place_id)
 
-r3 <- results3 %>% select(name, place_id, rating, formatted_address)
-r3 <- r3 %>% mutate(lat = r3lat, lng = r3lng)
 
-results <- distinct(rbind(r1, r2, r3))
+distinct_result_ids <- distinct(data.frame(result_ids))
 
-write.csv(results, "CURR_Work/Pulling Data/GoogleMapsPlaces/FoodBanks.csv")
+foodBankLocation <- data.frame()
+for(i in 1:nrow(distinct_result_ids)){
+  result.obj <- google_place_details(distinct_result_ids[i,])$result
+  result.lat <- result.obj$geometry$location$lat
+  result.lng <- result.obj$geometry$location$lng
+  result.selection <- data.frame(result.obj[c("name", "formatted_address", "place_id", "url")])
+  result.fin <- result.selection %>% mutate(lat = result.lat, lng = result.lng)
+  
+  foodBankLocation <- rbind(foodBankLocation, result.fin)
+}
+
+write.csv(foodBankLocation, "CURR_Work/Pulling Data/GoogleMapsPlaces/FoodBanks.csv")
+
+
+
+
+
+
+
+
+

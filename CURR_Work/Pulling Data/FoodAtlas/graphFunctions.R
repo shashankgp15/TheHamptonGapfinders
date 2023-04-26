@@ -12,7 +12,7 @@ data <- read_sf(dsn = "Distribution/masterData.shp")
 countyOutline <- read_sf(dsn = "Distribution/countyOutlines.shp")
 data15 <- data %>% filter(year == 2015)
 data19 <- data %>% filter(year == 2019)
-foodBanks <- read_csv("../GoogleMapsPlaces/FoodBanks.csv")
+foodBanks <- read_csv("../GoogleMapsPlaces/FoodBanks.csv", skip_empty_rows = TRUE)
 
 
 #!<------------------------------------------------>

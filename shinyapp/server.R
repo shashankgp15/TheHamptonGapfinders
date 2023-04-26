@@ -4870,6 +4870,21 @@ server <- function(input, output, session) {
     religion
   })
   
+  # Food Banks
+  output$foodBanksLeaflet <- renderLeaflet({
+    foodBankLoc <- read.csv("./data/foodBank/FoodBanks.csv")
+    countyOutlines <- read_sf(dsn = "./data/countyOutlines/countyOutlines.shp")
+    labs <- paste0(foodBankLoc$name, "<br></br>✰ - ", foodBankLoc$rating)
+    foodBank.map <- foodBankLoc %>%
+      leaflet(options = leafletOptions(minZoom = 5, maxZoom = 17, drag=FALSE)) %>%
+      addProviderTiles("CartoDB.PositronNoLabels") %>%
+      addMarkers(~lng, ~lat, popup=lapply(labs, htmltools::HTML)) %>%
+      addPolylines(data = countyOutlines, color = "black", weight = 1.2, smoothFactor = .5,
+                   fillOpacity = 0, fillColor = "transparent")
+    
+    foodBank.map
+  })
+  
   # Financial Literacy
   
   output$financial_literacy <- renderPlot({

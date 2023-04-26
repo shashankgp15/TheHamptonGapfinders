@@ -1853,8 +1853,28 @@ ui <- navbarPage(
                         )
                         
                         )))
-             )
-        ),
+             ),
+    tabPanel("Food Banks",
+             fluidRow(
+               p("", style = "padding-top:20px;"),
+               column(
+                 4,
+                 h4(strong("Food Banks")),
+                 p("Something")
+               ),
+               column(8,
+                      fluidPage(
+                        h1(strong("Food Banks"), align = "center"),
+                        withSpinner(leafletOutput("foodBanksLeaflet")), 
+                        p(
+                          tags$small(
+                            "Data Source: Google Maps API places"
+                          )
+                        )))
+             )),
+    tabPanel("Food Insecure Indicators", fluidRow("something goes here"))
+    ),
+  
         
   
   tabPanel("Future Work",
@@ -2272,6 +2292,110 @@ ui <- navbarPage(
           tags$br(),
           p(
             a(href = 'http://www.linkedin.com/in/esha-islam/', 'Esha Islam', target = '_blank'),
+            "(Virginia Tech, CMDA)"
+          )
+        ),
+        column(
+          2,
+          align = "center",
+          h4(strong("")),
+          tags$br(),
+          tags$br(),
+          img(
+            src = "crystal.jpg",
+            style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;",
+            width = "85%",
+            height = "85%"
+          ),
+          tags$br(),
+          p(
+            a(href = 'https://www.linkedin.com/in/crystalsulee/', 'Crystal Lee', target = '_blank'),
+            "(Virginia Tech, CMDA)"
+          )
+        ),
+        column(
+          2,
+          align = "center",
+          h4(strong("")),
+          tags$br(),
+          tags$br(),
+          img(
+            src = "sania.jpg",
+            style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;",
+            width = "85%",
+            height = "85%"
+          ),
+          tags$br(),
+          p(
+            a(href = 'http://www.linkedin.com/in/saniamahmood-2022/', 'Sania Mahmood', target = '_blank'),
+            "(Virginia Tech, CMDA)"
+          )
+        ),
+        column(
+          2,
+          align = "center",
+          h4(strong("")),
+          tags$br(),
+          tags$br(),
+          img(
+            src = "abigail.jpg",
+            style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;",
+            width = "85%",
+            height = "85%"
+          ),
+          tags$br(),
+          p(
+            a(href = 'https://www.linkedin.com/in/abigail-simpkins-170b1b14a/', 'Abigail Simpkins', target = '_blank'),
+            "(Virginia Tech, CMDA)"
+          )
+        ))),
+    tabPanel(
+      "CMDA Capstone Spring 23",
+      value = "team",
+      fluidRow(column(3),
+               column(
+                 6,
+                 h4(
+                   strong(
+                     "Computational Modeling & Data Analytics Capstone Team (Spring 2023)"
+                   ) ,
+                   align = "center"
+                 ),
+                 p(
+                   "The",
+                   a(
+                     href = 'https://data.science.vt.edu/programs/cmda.html',
+                     'Computational Modeling and Data Analytics (CMDA) program',
+                     target = "_blank"
+                   ),
+                   "draws on expertise from three primary departments at Virginia Tech with strengths in quantitative science: ",
+                   a(href = 'https://math.vt.edu/', ' Mathematics'),
+                   ', ',
+                   a(href = 'https://www.stat.vt.edu/', 'Statistics'),
+                   ', ',
+                   a(href = 'https://cs.vt.edu/', ' Computer Science'),
+                   '.',
+                   "By combining elements of these disciplines in innovative, integrated courses that emphasize techniques at the forefront of applied computation, we teach a rich suite of quantitative skills for tackling today's massive data-based problems."
+                 ),
+                 p("", style = "padding-top:10px;"),
+               )),
+      fluidRow(
+        column(3),
+        column(
+          2,
+          align = "center",
+          h4(strong("")),
+          tags$br(),
+          tags$br(),
+          img(
+            src = "john.jpg",
+            style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;",
+            width = "85%",
+            height = "85%"
+          ),
+          tags$br(),
+          p(
+            a(href = 'https://www.linkedin.com/in/john-malla/', 'John Malla', target = '_blank'),
             "(Virginia Tech, CMDA)"
           )
         ),
