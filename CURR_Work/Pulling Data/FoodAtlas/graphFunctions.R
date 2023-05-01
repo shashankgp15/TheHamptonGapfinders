@@ -7,6 +7,7 @@ library(leaflet)
 library(tidyverse)
 library(tidycensus)
 library(htmltools)
+library(leaflet.extras)
 
 data <- read_sf(dsn = "Distribution/masterData.shp")
 countyOutline <- read_sf(dsn = "Distribution/countyOutlines.shp")

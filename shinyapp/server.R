@@ -4885,6 +4885,14 @@ server <- function(input, output, session) {
     foodBank.map
   })
   
+  output$numFoodBanksLocalities <- renderPlot({
+    
+    
+    
+    
+    
+  })
+  
   # Financial Literacy
   
   output$financial_literacy <- renderPlot({

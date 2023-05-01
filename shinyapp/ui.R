@@ -1860,18 +1860,29 @@ ui <- navbarPage(
                column(
                  4,
                  h4(strong("Food Banks")),
-                 p("Something")
+                 p("First we'll go into how this data was collected"),
+                 p("Next we'll discuss the heatmap, most likely showing that there is a higher density of food banks in the Norfolk, Hampton Area"),
+                 p("We'll manually count how many food banks there are in each county")
                ),
                column(8,
                       fluidPage(
                         h1(strong("Food Banks"), align = "center"),
-                        withSpinner(leafletOutput("foodBanksLeaflet")), 
-                        p(
-                          tags$small(
-                            "Data Source: Google Maps API places"
-                          )
+                        tabsetPanel(
+                          tabPanel("Food Bank Locations", 
+                                   withSpinner(leafletOutput("foodBanksLeaflet")), 
+                                   p(
+                                     tags$small(
+                                       "Data Source: Google Maps API places"
+                                     ))),
+                          tabPanel("Food Banks in Localities",
+                                   withSpinner(plotOutput("numFoodBanksLocalities")), 
+                                   p(
+                                     tags$small(
+                                       "Data Source: Google Maps API places"
+                                     )))
+                        )
                         )))
-             )),
+             ),
     tabPanel("Food Insecure Indicators", fluidRow("something goes here"))
     ),
   
