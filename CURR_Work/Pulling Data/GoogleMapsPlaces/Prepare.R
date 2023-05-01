@@ -62,32 +62,6 @@ write.csv(foodBankLocation, "CURR_Work/Pulling Data/GoogleMapsPlaces/FoodBanks.c
 # <!---------------------------------- PLAYGROUND ---------------------------------------->
 
 
-foodBanks <- na.omit(read.csv(file = "CURR_Work/Pulling Data/GoogleMapsPlaces/FoodBanks.csv", blank.lines.skip = TRUE))
-tt1 <- read_sf("CURR_Work/Pulling Data/FoodAtlas/Distribution/countyOutlines.dbf")
-pnts <- data.frame(y = foodBanks$lat, x = foodBanks$lng)
-
-
-
-# create a points collection
-pnts_sf <- do.call("st_sfc",c(lapply(1:nrow(pnts), 
-                                     function(i) {st_point(as.numeric(pnts[i, ]))}), list("crs" = 4326))) 
-
-pnts_trans <- st_transform(pnts_sf, 2163) # apply transformation to pnts sf
-tt1_trans <- st_transform(tt1, 2163)      # apply transformation to polygons sf
-
-# intersect and extract state name
-pnts$region <- apply(st_intersects(tt1_trans, pnts_trans, sparse = FALSE), 2, 
-                     function(col) { 
-                       tt1_trans[which(col), ]$GEOID
-                     })
-
-
-
-
-
-
-
-
 
 
 

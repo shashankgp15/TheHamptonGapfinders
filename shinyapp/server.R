@@ -4874,7 +4874,7 @@ server <- function(input, output, session) {
   output$foodBanksLeaflet <- renderLeaflet({
     foodBankLoc <- read.csv("./data/foodBank/FoodBanks.csv")
     countyOutlines <- read_sf(dsn = "./data/countyOutlines/countyOutlines.shp")
-    labs <- paste0(foodBankLoc$name, "<br></br>✰ - ", foodBankLoc$rating)
+    labs <- paste0(foodBankLoc$name, "<br></br><a href='", foodBankLoc$url,"'>Link</a>")
     foodBank.map <- foodBankLoc %>%
       leaflet(options = leafletOptions(minZoom = 5, maxZoom = 17, drag=FALSE)) %>%
       addProviderTiles("CartoDB.PositronNoLabels") %>%
@@ -4885,12 +4885,27 @@ server <- function(input, output, session) {
     foodBank.map
   })
   
-  output$numFoodBanksLocalities <- renderPlot({
+  output$numFoodBanksLocalities <- renderPlotly({
+    foodBankLoc <- read.csv("./data/foodBank/FoodBanks.csv")
+    gg.table <- as.data.frame(table(foodBankLoc$county))
+    colnames(gg.table) <- c("Locality", "Food Banks")
+    gg.table$Locality <- as.character(gg.table$Locality)
+    gg.table <- rbind(gg.table, c(Locality = "Poquoson", `Food Banks` = 0))
+    gg.table <- rbind(gg.table, c(Locality = "Southampton", `Food Banks` = 0))
+    gg.table$`Food Banks` <- as.numeric(gg.table$`Food Banks`)
+    gg.table <- gg.table %>% arrange(Locality)
     
+    foodBank.ggplot <- ggplot(gg.table, aes(x = Locality, y = `Food Banks`, fill = Locality)) + 
+      geom_col() + theme(legend.position="none", axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+      geom_text(
+        aes(label = `Food Banks`), 
+        position = position_dodge(width = 1),
+        vjust = -1.5, color = 'black') +
+      scale_fill_viridis_d() + 
+      ylim(0, 12)
+      
     
-    
-    
-    
+    ggplotly(foodBank.ggplot)
   })
   
   # Financial Literacy

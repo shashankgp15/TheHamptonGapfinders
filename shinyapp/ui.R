@@ -1860,9 +1860,11 @@ ui <- navbarPage(
                column(
                  4,
                  h4(strong("Food Banks")),
-                 p("First we'll go into how this data was collected"),
-                 p("Next we'll discuss the heatmap, most likely showing that there is a higher density of food banks in the Norfolk, Hampton Area"),
-                 p("We'll manually count how many food banks there are in each county")
+                 p("Using Google Maps API we were able to collect around 60 different food bank locations within the Hampton Roads area. We did this by choosing three central coordinate points and using a radius search around those three points of 50,000 meters, Google Maps returned a list of locations that met the search criteria. In our case, it was locations that included 'Food Bank' or 'Food Pantry'."),
+                 p("After the search was made, we parsed through all of the locations, adding which locality they were in and removed the locations that were outside of the bounds we were searching for."),
+                 p("This process yielded a few interesting findings. In the plots to the right we can see the spread of food bank locations in all of the localities."),
+                 p("Interestingly enough, both Southampton, and Poquoson did not have any returned food bank locations. Being as big as Southampton is, it was surprising to see nothing in the area in terms of food security resources"),
+                 p("We also see that Norfolk and Hampton have the most amounts of food banks, which would mean that higher populated areas, or more food insecure places have more of a focus on providing resources such as food banks or pantries to their communities.")
                ),
                column(8,
                       fluidPage(
@@ -1875,7 +1877,7 @@ ui <- navbarPage(
                                        "Data Source: Google Maps API places"
                                      ))),
                           tabPanel("Food Banks in Localities",
-                                   withSpinner(plotOutput("numFoodBanksLocalities")), 
+                                   withSpinner(plotlyOutput("numFoodBanksLocalities")), 
                                    p(
                                      tags$small(
                                        "Data Source: Google Maps API places"
@@ -2417,14 +2419,14 @@ ui <- navbarPage(
           tags$br(),
           tags$br(),
           img(
-            src = "crystal.jpg",
+            src = "meghna.JPG",
             style = "display: inline; margin-right: 5px; border: 1px solid #C0C0C0;",
             width = "85%",
             height = "85%"
           ),
           tags$br(),
           p(
-            a(href = 'https://www.linkedin.com/in/crystalsulee/', 'Crystal Lee', target = '_blank'),
+            a(href = 'https://www.linkedin.com/in/meghna-banerjee-b6523a91/', 'Meghna Banerjee', target = '_blank'),
             "(Virginia Tech, CMDA)"
           )
         ),
