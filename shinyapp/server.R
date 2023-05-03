@@ -5868,6 +5868,33 @@ server <- function(input, output, session) {
       addLegend(pal = pal2, values = ~merged_data2$count, title = 'Number of Stations', opacity = .75)
     radio
   })
+    
+    # Low Access to Food -----------------------------------------------------
+  # var_LowAcc <- reactive({
+  #   input$LowAccIn
+  # })
+  # 
+  # output$LowAccOut <- renderLeaflet({
+  #   lowAccDF <- read.csv("CURR_Work/Pulling Data/FoodAtlas/Working/vatr_foodAccess.csv")
+  #   lowAccDF = lowAccDF[lowAccDF.year != 2015]
+  #   
+  #   colnames(foodstmp)[4] <- "Percent"
+  #   
+  #   
+  #   foodAccessMap <- lowAccDF %>% 
+  #   leaflet(options = leafletOptions(minZoom = 5, maxZoom = 15, drag = FALSE)) %>% 
+  #   addProviderTiles("CartoDB.PositronNoLabels") %>% 
+  #   addPolygons(color = ~ lowAccDF(Percent), weight = 0.5, fillOpacity = 0.7, smoothFactor = 0,
+  #               highlightOptions = highlightOptions(bringToFront = TRUE, opacity = 1.5, weight = 3),
+  #               label = ~paste0(NAME, " - ", variable, ": ", Percent, "%")) %>% 
+  #   addLegend("topleft",
+  #             pal = lowAccDF,
+  #             values = ~ Percent,
+  #             title = "Food Stamps",
+  #             labFormat = labelFormat(suffix = "%"),
+  #             opacity = 1)
+  #   
+  # })
   
   # Household Wellbeing -----------------------------------------------------
   var_well <- reactive({
