@@ -1885,8 +1885,24 @@ ui <- navbarPage(
                         )
                         )))
              ),
-    tabPanel("Food Insecure Indicators", fluidRow("something goes here"))
-    ),
+    tabPanel("Food Insecure Indicators", fluidRow(p("", style = "padding-top:20px;"),
+                                                  column(
+                                                    4,
+                                                    h4(strong("Food Insecurity")),
+                                                    p("After collecting data from the US department of Agriculture, we have made a heatmap that shows the level of lack of access to food markets and sources."),
+                                                    p("First we had to clean the data by removing any references to 2015 data and then we had to make a column that specifies the percentages for each census tract. Afterwards we had to sum up the values of each of the census tracts based on the city"),
+                                                    p("This process yielded a few interesting findings. For one thing the map yielded results that show that food deserts that are around are mostly within the range of 1/2 to 1 mile. These food deserts weren't just in the black majority areas, but the food deserts within a half mile were mostly in poorer, black majority areas."),
+                                                    p("This means that most of the food deserts in black areas tend to be more severe as there is a lack of food in these areas for even a half mile.")
+                                                  )))
+    ),column(8, fluidPage(
+      h1(strong("Food Insecurity"), align = "center"),
+      tabsetPanel(
+        tabPanel("Food Insecurity heatmap", 
+                 withSpinner(leafletOutput("foodAccessMap")), 
+                 p(
+                   tags$small(
+                     "Data Source: US dept of agriculture"
+                   )))))),
   
         
   
